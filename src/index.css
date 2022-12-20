@@ -24,3 +24,7 @@ a {
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+select{
+  margin: 0;
+}

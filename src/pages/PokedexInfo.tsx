@@ -232,7 +232,7 @@ const PokedexInfo = () => {
         <div className="sprites__cards">
           {pokemon?.sprites &&
             Object.entries(pokemon.sprites.versions).map(([key, version]) =>
-              Object.entries(version).map((ver) => (
+              Object.entries(version).filter((versionF) => (versionF[1] as Sprite).front_default).map((ver) => (
                 <div key={(ver[1] as Sprite).front_default} className={`sprites__card `}>
                   <h3 className="sprites__subtitle">
                     {key} | <span className="sprites__span">{ver[0]}</span>

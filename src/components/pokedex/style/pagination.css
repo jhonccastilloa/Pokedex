@@ -1,12 +1,21 @@
 .pagination__item {
   border: 2px solid rgb(227, 53, 13);
-  color: rgb(255, 165, 13);
-  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 50%;
   font-weight: 900;
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  display: block;
-  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  font-weight: 600;
+  position: relative;
+}
+.pagination__img{
+  position: absolute;
 }
 .pagination__list {
   display: flex;
@@ -18,4 +27,9 @@
 
 .pagination__link:visited {
   color: inherit;
+}
+
+.active{
+  color: white;
+  background-color: rgb(227, 53, 13);
 }

@@ -84,6 +84,9 @@ const Pokedex = () => {
   };
   return (
     <div>
+      <section className="section__navbar container">
+        <img className="navbar__img" src="/headerPokemon2.jpg" alt="pokemon navbar" />
+      </section>
       <section className="section__header container" ref={sectionCards}>
         <h1 className="header__title">Pokedex</h1>
         <p className="header__paragraph">
@@ -100,31 +103,39 @@ const Pokedex = () => {
             />
             <button className="header__btn">Buscar</button>
           </form>
-          <select className="header__select" onChange={handleChangeSelect}>
-            <option className="header__option" value="All">
-              All Pokemon
-            </option>
-            {types?.map((type) => (
-              <option
-                className="header__option"
-                key={type.name}
-                value={type.url}
-              >
-                {type.name}
+          <div className="header__type">
+            <select className="header__select"  onChange={handleChangeSelect}>
+              <option className="header__option" value="All">
+                All Pokemon
               </option>
-            ))}
-          </select>
-          <select
-            className="header__select"
-            onChange={handleChangeSelectQuantity}
-          >
-            <option className="header__option-quantity" value="16">
-              16
-            </option>
-            <option value="32">32</option>
-            <option value="64">64</option>
-            <option value="96">96</option>
-          </select>
+              {types?.map((type) => (
+                <option
+                  className="header__option"
+                  key={type.name}
+                  value={type.url}
+                >
+                  {type.name}
+                </option>
+              ))}
+            </select>
+            <button className="header__btn">Tipo</button>
+          </div>
+
+          <div className="header__quantity">
+            <select
+              className="header__select"
+              onChange={handleChangeSelectQuantity}
+            >
+              <option className="header__option-quantity" value="16">
+                16
+              </option>
+              <option value="32">32</option>
+              <option value="64">64</option>
+              <option value="96">96</option>
+            </select>
+            <button className="header__btn">Cantidad</button>
+
+          </div>
         </div>
       </section>
       <section className="section__cards container">

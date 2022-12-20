@@ -51,13 +51,14 @@ const Pagination: FC<PaginationProps> = ({
       <li className="pagination__item" onClick={handlePrevius}>
         {"<"}
       </li>
-      {arrPage.map((page) => (
+      {arrPage.map((pag) => (
         <li
-          className="pagination__item"
-          key={page}
-          onClick={() => handlePage(page)}
+          className={`pagination__item ${page === pag && "active"}`}
+          key={pag}
+          onClick={() => handlePage(pag)}
         >
-          {page}
+          {pag}
+          <img className="pagination__img" src="/pokeball.svg" alt="pokeball" />
         </li>
       ))}
       <li className="pagination__item" onClick={handleNext}>
