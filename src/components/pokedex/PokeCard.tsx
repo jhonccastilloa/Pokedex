@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, RefObject, useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Pokemon } from "../../interfaces/types";
 
@@ -7,9 +7,10 @@ import "./style/pokeCard.css";
 
 interface pokeCardProps {
   url: string;
+  sectionStart: RefObject<HTMLElement>;
 }
 
-const pokeCard: FC<pokeCardProps> = ({ url }) => {
+const pokeCard: FC<pokeCardProps> = ({ url,sectionStart }) => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,6 +25,10 @@ const pokeCard: FC<pokeCardProps> = ({ url }) => {
   };
 
   const handleClick = () => {
+    scrollTo({
+      top: sectionStart.current?.offsetTop,
+      behavior: "smooth",
+    });
     navigate(`/pokedex/${pokemon?.id}`);
     
   };

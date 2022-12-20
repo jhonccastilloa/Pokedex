@@ -28,7 +28,6 @@ const Pagination: FC<PaginationProps> = ({
     arrPage.push(i);
   }
   const handlePage = (value: number) => {
-    console.log(sectionCards.current);
     scrollTo({
       top: sectionCards.current?.offsetTop,
       behavior: "smooth",

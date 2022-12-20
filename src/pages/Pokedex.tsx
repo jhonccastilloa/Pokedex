@@ -23,6 +23,7 @@ const Pokedex = () => {
   const navigate = useNavigate();
 
   const sectionCards = useRef<HTMLElement>(null);
+  const sectionStart = useRef<HTMLElement>(null);
 
   useEffect(() => {
     getTypes();
@@ -67,24 +68,31 @@ const Pokedex = () => {
 
     navigate("/pokedex/" + input);
   };
-  console.log();
+  
   const handleChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    scrollTo({
+      top: sectionCards.current?.offsetTop,
+      behavior: "smooth",
+    });
     setSelectType(e.target.value);
     setPage(1);
   };
 
-  //pagination Logic
 
   const [page, setPage] = useState(1);
-  const [pokeForPage, setPokeForPage] = useState(32);
+  const [pokeForPage, setPokeForPage] = useState(16);
   const maxPage = pokemons && Math.ceil(pokemons.length / pokeForPage);
 
   const handleChangeSelectQuantity = (e: ChangeEvent<HTMLSelectElement>) => {
+    scrollTo({
+      top: sectionCards.current?.offsetTop,
+      behavior: "smooth",
+    });
     setPokeForPage(Number(e.target.value));
   };
   return (
     <div>
-      <section className="section__navbar container">
+      <section className="section__navbar container" ref={sectionStart}>
         <img className="navbar__img" src="/headerPokemon2.jpg" alt="pokemon navbar" />
       </section>
       <section className="section__header container" ref={sectionCards}>
@@ -142,7 +150,7 @@ const Pokedex = () => {
         {pokemons
           ?.slice((page - 1) * pokeForPage, page * pokeForPage)
           .map((pokemon) => (
-            <PokeCard key={pokemon.name} url={pokemon.url} />
+            <PokeCard key={pokemon.name} url={pokemon.url} sectionStart={sectionStart}/>
           ))}
       </section>
       <section className="section__pagination">
@@ -153,6 +161,9 @@ const Pokedex = () => {
           sectionCards={sectionCards}
         />
       </section>
+      <footer className="footer container">
+        <p>Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe</p>
+      </footer>
     </div>
   );
 };

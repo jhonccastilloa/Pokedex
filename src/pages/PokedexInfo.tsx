@@ -16,7 +16,10 @@ const PokedexInfo = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [pokemonSpecie, setpokemonSpecie] = useState<Specie | null>(null);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     getPokemon();
     getPokemonSpecie();
   }, [id]);
@@ -25,7 +28,9 @@ const PokedexInfo = () => {
     const URL = `https://pokeapi.co/api/v2/pokemon/${id}`;
     axios
       .get(URL)
-      .then((res) => setPokemon(res.data))
+      .then((res) => {setPokemon(res.data)
+        setLoading(false)
+      })
       .catch((err) => console.log(err));
   };
   const getPokemonSpecie = () => {
@@ -48,9 +53,11 @@ const PokedexInfo = () => {
       .catch((err) => console.log(err));
   };
   console.log("pokemon", pokemon?.sprites.versions);
+  console.log(loading);
 
   return (
     <div className={` bg-${pokemon?.types[0].type.name} pokedexInfo`}>
+      <img className="backgroud__img" src="/pokeball.svg" alt="" />
       <section className="section__header-info container">
         <div className="header__info">
           <p className="header__id">
@@ -81,7 +88,7 @@ const PokedexInfo = () => {
           </p>
           <img
             className="header__img"
-            src={pokemon?.sprites.other.dream_world.front_default}
+            src={pokemon?.sprites.other.dream_world.front_default || pokemon?.sprites.other["official-artwork"].front_default}
             alt=""
           />
           <p className="header__text-weight">
@@ -232,23 +239,37 @@ const PokedexInfo = () => {
         <div className="sprites__cards">
           {pokemon?.sprites &&
             Object.entries(pokemon.sprites.versions).map(([key, version]) =>
-              Object.entries(version).filter((versionF) => (versionF[1] as Sprite).front_default).map((ver) => (
-                <div key={(ver[1] as Sprite).front_default} className={`sprites__card `}>
-                  <h3 className="sprites__subtitle">
-                    {key} | <span className="sprites__span">{ver[0]}</span>
-                  </h3>
-                  <figure className="sprites__figure">
-                    <img
-                      className="sprites__img"
-                      src={(ver[1] as Sprite).front_default}
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              ))
+              Object.entries(version)
+                .filter((versionF) => (versionF[1] as Sprite).front_default)
+                .map((ver) => (
+                  <div
+                    key={(ver[1] as Sprite).front_default}
+                    className={`sprites__card `}
+                  >
+                    <h3 className="sprites__subtitle">
+                      {key} | <span className="sprites__span">{ver[0]}</span>
+                    </h3>
+                    <figure className="sprites__figure">
+                      <img
+                        className="sprites__img"
+                        src={(ver[1] as Sprite).front_default}
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                ))
             )}
         </div>
       </section>
+      
+      <footer className="footer container">
+        <p>Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe</p>
+      </footer>
+      {loading && (
+        <div className="info__loading">
+          <img src="/pokeballGift.webp" alt="" />
+        </div>
+      )}
     </div>
   );
 };

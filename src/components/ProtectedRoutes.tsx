@@ -5,7 +5,7 @@ import { RootState } from "../store";
 const ProtectedRoutes = () => {
   const { trainer } = useSelector((state: RootState) => state);
   if (trainer) {
-    return <Outlet />;
+    return (<Outlet />);
   } else {
     return <Navigate to="/" />;
   }
