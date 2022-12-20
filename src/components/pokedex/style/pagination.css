@@ -1,0 +1,21 @@
+.pagination__item {
+  border: 2px solid rgb(227, 53, 13);
+  color: rgb(255, 165, 13);
+  border-radius: 5px;
+  font-weight: 900;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  display: block;
+  padding: 8px 16px;
+}
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+
+.pagination__link:visited {
+  color: inherit;
+}

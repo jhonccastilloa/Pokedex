@@ -1,0 +1,70 @@
+.container{
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1280px;
+}
+.section__cards{
+ display: flex; 
+ justify-content: center;
+ flex-wrap: wrap;
+ gap: 25px;
+}
+.header__title{
+  font-size: 45px;
+  margin-bottom: 25px;
+}
+.header__paragraph{
+  color: rgb(161, 164, 167);
+  margin-bottom: 15px;
+}
+.header__trainer{
+  text-transform: capitalize;
+  font-weight: 800;
+}
+.header__search{
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 90%;
+  margin: 25px 0;
+}
+.header__form{
+  display: flex;
+}
+.header__input{
+  padding: 15px;
+    font-size: 1.3rem;
+    border-radius: 9px 0 0 9px;
+    text-align: center;
+    font-weight: 600;
+    background-color: #fff;
+    border: 3px solid rgb(227, 53, 13);
+    color: #062226;
+}
+.header__btn{
+  padding: 15px;
+    font-size: 1.3rem;
+    width: 50%;
+    max-width: 200px;
+    border-radius: 0 9px 9px 0;
+    text-align: center;
+    font-weight: 600;
+    background-color: rgb(227, 53, 13);
+    border: 3px solid rgb(227, 53, 13);
+    border-left: none;
+    color: #fff;
+}
+.header__select{
+  padding: 15px;
+    font-size: 1.3rem;
+    border-radius: 9px;
+    text-align: left;
+    font-weight: 600;
+    background-color: #fff;
+    border: 3px solid rgb(227, 53, 13);
+    color: #062226;
+}
+.section__pagination{
+
+  margin: 25px 0;
+}
