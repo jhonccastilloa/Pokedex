@@ -29,6 +29,7 @@
 }
 .backgroud__img{
   position: absolute;
+  width: 100%;
   max-width: 800px;
   top: -10%;
   left: -10%;
@@ -369,8 +370,8 @@
     gap: 5px;
   }
   .backgroud__img{
-    top: 20%;
-    left: auto;
+    top: 1.5%;
+    left: 0;
   }
 }
 
