@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BarSkill from "../components/pokedexInfo/BarSkill";
 import {
   language,
@@ -17,6 +17,9 @@ const PokedexInfo = () => {
   const [pokemonSpecie, setpokemonSpecie] = useState<Specie | null>(null);
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -28,10 +31,17 @@ const PokedexInfo = () => {
     const URL = `https://pokeapi.co/api/v2/pokemon/${id}`;
     axios
       .get(URL)
-      .then((res) => {setPokemon(res.data)
-        setLoading(false)
+      .then((res) => {
+        setPokemon(res.data);
+        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setTimeout(()=>{
+
+          setError(true);
+        },1000)
+      });
   };
   const getPokemonSpecie = () => {
     const URL = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
@@ -52,8 +62,13 @@ const PokedexInfo = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  const handleClickBack = () => {
+    setError(false);
+    navigate("/pokedex");
+  };
   console.log("pokemon", pokemon?.sprites.versions);
-  console.log(loading);
+  console.log(error);
 
   return (
     <div className={` bg-${pokemon?.types[0].type.name} pokedexInfo`}>
@@ -88,7 +103,10 @@ const PokedexInfo = () => {
           </p>
           <img
             className="header__img"
-            src={pokemon?.sprites.other.dream_world.front_default || pokemon?.sprites.other["official-artwork"].front_default}
+            src={
+              pokemon?.sprites.other.dream_world.front_default ||
+              pokemon?.sprites.other["official-artwork"].front_default
+            }
             alt=""
           />
           <p className="header__text-weight">
@@ -261,13 +279,24 @@ const PokedexInfo = () => {
             )}
         </div>
       </section>
-      
+
       <footer className="footer container">
-        <p>Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe</p>
+        <p>
+          Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe
+        </p>
       </footer>
       {loading && (
         <div className="info__loading">
-          <img src="/pokeballGift.webp" alt="" />
+          <div className="info__container">
+            <img src="/pokeballGift.webp" alt="" />
+            {error && (
+              <div className="info__error">
+                <h3 className="error__title">Pokemon no encontrado!</h3>
+                <p className="error__text">Asegurece de haber escrito bien el nombre.</p>
+                <button className="error__btn" onClick={handleClickBack}>Regresar</button>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
