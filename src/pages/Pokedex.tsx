@@ -93,7 +93,7 @@ const Pokedex = () => {
   return (
     <div>
       <section className="section__navbar container" ref={sectionStart}>
-        <img className="navbar__img" src="/headerPokemon2.jpg" alt="pokemon navbar" />
+        <img className="navbar__img" src="/headerPokemon2.png" alt="pokemon navbar" />
       </section>
       <section className="section__header container" ref={sectionCards}>
         <h1 className="header__title">Pokedex</h1>
@@ -111,7 +111,7 @@ const Pokedex = () => {
             />
             <button className="header__btn">Buscar</button>
           </form>
-          <div className="header__type">
+          <div className="header__types">
             <select className="header__select"  onChange={handleChangeSelect}>
               <option className="header__option" value="All">
                 All Pokemon

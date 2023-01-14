@@ -1,0 +1,26 @@
+.theme {
+  position: fixed;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.theme__icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  position: relative;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  aspect-ratio: 1;
+  background-color: rgb(242, 242, 242);
+  border-radius: 50%;
+}
+
+.icon__dark{
+  background-color: rgb(88, 100, 116);
+  color: white;
+}

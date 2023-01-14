@@ -43,7 +43,7 @@
 .header__form {
   display: flex;
 }
-.header__type {
+.header__types {
   display: flex;
 }
 .header__quantity {
@@ -60,6 +60,7 @@
   color: #062226;
 }
 .header__btn {
+  cursor: pointer;
   padding: 15px;
   font-size: 1.3rem;
   max-width: 500px;
@@ -72,6 +73,7 @@
   color: #fff;
 }
 .header__select {
+  cursor: pointer;
   padding: 15px;
   font-size: 1.3rem;
   border-radius: 9px 0 0 9px;

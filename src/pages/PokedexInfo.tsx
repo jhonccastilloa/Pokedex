@@ -67,8 +67,6 @@ const PokedexInfo = () => {
     setError(false);
     navigate("/pokedex");
   };
-  console.log("pokemon", pokemon?.sprites.versions);
-  console.log(error);
 
   return (
     <div className={` bg-${pokemon?.types[0].type.name} pokedexInfo`}>
