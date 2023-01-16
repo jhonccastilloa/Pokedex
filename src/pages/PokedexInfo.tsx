@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import BarSkill from "../components/pokedexInfo/BarSkill";
+import ThemeContext from "../context/ThemeContext";
 import {
   language,
   Pokemon,
@@ -19,6 +20,7 @@ const PokedexInfo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const { isDark } = useContext(ThemeContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,10 +39,9 @@ const PokedexInfo = () => {
       })
       .catch((err) => {
         console.log(err);
-        setTimeout(()=>{
-
+        setTimeout(() => {
           setError(true);
-        },1000)
+        }, 1000);
       });
   };
   const getPokemonSpecie = () => {
@@ -112,7 +113,11 @@ const PokedexInfo = () => {
           </p>
         </figure>
       </section>
-      <section className="section__info container--sections">
+      <section
+        className={`section__info container--sections ${
+          isDark && "sections--dark"
+        }`}
+      >
         <div className="info__texts">
           <h2 className="info__title">{pokemon?.name}</h2>
           <p className="info__paragraph">
@@ -148,7 +153,9 @@ const PokedexInfo = () => {
         </div>
         <div className="info__cards ">
           <div className={`info__card bg-${pokemon?.types[0].type.name} `}>
-            <h2 className="info__card-title">Experiencia</h2>
+            <h2 className={`info__card-title ${isDark && "info__card--dark"}`}>
+              Experiencia
+            </h2>
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -161,7 +168,11 @@ const PokedexInfo = () => {
             >
               <path d="M255 471L91.7 387V41h328.6v346zm-147.3-93.74L255 453l149.3-75.76V57H107.7v320.26zm187.61-168.34l-14.5-46 38.8-28.73-48.27-.43L256 87.94l-15.33 45.78-48.27.43 38.8 28.73-14.5 46 39.31-28zM254.13 311.5l98.27-49.89v-49.9l-98.14 49.82-94.66-48.69v50zm.13 32.66l-94.66-48.69v50l94.54 48.62 98.27-49.89v-49.9z"></path>
             </svg>
-            <p className="info__card-paragraph">{pokemon?.base_experience}</p>
+            <p
+              className={`info__card-paragraph ${isDark && "info__card--dark"}`}
+            >
+              {pokemon?.base_experience}
+            </p>
           </div>
           <div
             className={`info__card info__card--obscure bg-${pokemon?.types[0].type.name} `}
@@ -186,7 +197,9 @@ const PokedexInfo = () => {
             </p>
           </div>
           <div className={`info__card  bg-${pokemon?.types[0].type.name} `}>
-            <h2 className="info__card-title">Tipo</h2>
+            <h2 className={`info__card-title ${isDark && "info__card--dark"}`}>
+              Tipo
+            </h2>
             <svg
               stroke="currentColor"
               fill="currentColor"
@@ -202,13 +215,19 @@ const PokedexInfo = () => {
                 d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"
               ></path>
             </svg>
-            <p className="info__card-paragraph">
+            <p
+              className={`info__card-paragraph ${isDark && "info__card--dark"}`}
+            >
               {pokemon?.types[0].type.name}
             </p>
           </div>
         </div>
       </section>
-      <section className="section__statistics container--sections">
+      <section
+        className={`section__statistics container--sections ${
+          isDark && "sections--dark"
+        }`}
+      >
         <h2 className="statistics__title">Estadisticas Base</h2>
 
         <div className="statistics__container">
@@ -221,7 +240,11 @@ const PokedexInfo = () => {
           ))}
         </div>
       </section>
-      <section className="section__moves container--sections">
+      <section
+        className={`section__moves container--sections ${
+          isDark && "sections--dark"
+        }`}
+      >
         <h2 className="moves__title">Movimientos</h2>
         <p className="moves__text">
           Un movimiento o ataque (Move en inglés, わざ Acción en japonés) es un
@@ -241,7 +264,11 @@ const PokedexInfo = () => {
           ))}
         </ul>
       </section>
-      <section className="section__sprites container--sections">
+      <section
+        className={`section__sprites container--sections ${
+          isDark && "sections--dark"
+        }`}
+      >
         <h2 className="sprites__title">Imagenes</h2>
         <p className="sprites__text">
           Pokémon se compone de siete generaciones. Estas se han sucedido desde
@@ -290,8 +317,12 @@ const PokedexInfo = () => {
             {error && (
               <div className="info__error">
                 <h3 className="error__title">Pokemon no encontrado!</h3>
-                <p className="error__text">Asegurece de haber escrito bien el nombre.</p>
-                <button className="error__btn" onClick={handleClickBack}>Regresar</button>
+                <p className="error__text">
+                  Asegurece de haber escrito bien el nombre.
+                </p>
+                <button className="error__btn" onClick={handleClickBack}>
+                  Regresar
+                </button>
               </div>
             )}
           </div>

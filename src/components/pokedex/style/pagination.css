@@ -14,6 +14,10 @@
   font-weight: 600;
   position: relative;
 }
+.pagination__item--dark{
+  background-color: #1f2937;
+  color:white
+}
 .pagination__img{
   position: absolute;
 }

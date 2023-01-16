@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import ThemeContext from "../../context/ThemeContext";
 import "./style/theme.css";
 
 const Theme = () => {
-  const [isDark, setIsDark] = useState(false);
-  const handleTheme = () => setIsDark(!isDark);
+  const {isDark,handleTheme} = useContext(ThemeContext)
+  
   return (
+
     <div className="container">
       <div className="theme">
           <span className={`theme__icon ${isDark && "icon__dark"}`}onClick={handleTheme}>

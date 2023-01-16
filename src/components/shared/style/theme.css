@@ -3,6 +3,8 @@
   width: 90%;
   margin: 0 auto;
   max-width: 1280px;
+  z-index: 1;
+
 }
 
 .theme__icon {
@@ -15,12 +17,13 @@
   top: 20px;
   right: 20px;
   width: 50px;
+  font-size: 20px;
   aspect-ratio: 1;
   background-color: rgb(242, 242, 242);
   border-radius: 50%;
 }
 
-.icon__dark{
+.icon__dark {
   background-color: rgb(88, 100, 116);
   color: white;
 }

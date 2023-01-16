@@ -1,4 +1,5 @@
-import { FC, RefObject } from "react";
+import { FC, RefObject, useContext } from "react";
+import ThemeContext from "../../context/ThemeContext";
 import "./style/pagination.css";
 
 interface PaginationProps {
@@ -45,14 +46,16 @@ const Pagination: FC<PaginationProps> = ({
       setPage(page + 1);
     }
   };
+
+  const {isDark} = useContext(ThemeContext)
   return (
     <ul className="pagination__list">
-      <li className="pagination__item" onClick={handlePrevius}>
+      <li className={`pagination__item ${isDark && "pagination__item--dark"}`} onClick={handlePrevius}>
         {"<"}
       </li>
       {arrPage.map((pag) => (
         <li
-          className={`pagination__item ${page === pag && "active"}`}
+          className={`pagination__item ${page === pag && "active"} ${isDark && "pagination__item--dark"}`}
           key={pag}
           onClick={() => handlePage(pag)}
         >
@@ -60,7 +63,7 @@ const Pagination: FC<PaginationProps> = ({
           <img className="pagination__img" src="/pokeball.svg" alt="pokeball" />
         </li>
       ))}
-      <li className="pagination__item" onClick={handleNext}>
+      <li className={`pagination__item ${isDark && "pagination__item--dark"}`} onClick={handleNext}>
         {">"}
       </li>
     </ul>

@@ -1,3 +1,5 @@
+import { Children } from "react";
+
 interface type {
   type: {
     name: string;
@@ -105,4 +107,8 @@ export interface StatMax {
     value: number;
     icon: string;
   };
+}
+
+export interface Children{
+  children: JSX.Element| JSX.Element[]
 }

@@ -3,9 +3,16 @@
   width: 90%;
   margin: 50px auto;
   max-width: 1280px;
-  color: black;
+  color: rgb(36, 48, 58);
+
   padding: 32px;
   border-radius: 10px;
+  transition: background-color 500ms ease,color 500ms ease;
+}
+.sections--dark {
+  background-color: rgb(0, 0, 0, 0.7);
+  color: white;
+
 }
 .pokedexInfo {
   width: 100%;
@@ -14,7 +21,7 @@
   --opacity-bgc: 0.8;
   position: relative;
 }
-.info__loading{
+.info__loading {
   z-index: 1;
   position: fixed;
   width: 100%;
@@ -27,7 +34,7 @@
   backdrop-filter: blur(20px);
   flex-wrap: wrap;
 }
-.backgroud__img{
+.backgroud__img {
   position: absolute;
   width: 100%;
   max-width: 800px;
@@ -135,13 +142,10 @@
 }
 .info__title {
   text-transform: capitalize;
-  color: rgb(36, 48, 58);
   font-size: 30px;
   font-weight: 800;
 }
-.info__paragraph {
-  color: rgb(36, 48, 58);
-}
+
 .info__span {
   color: rgb(161 164 167);
 }
@@ -184,12 +188,14 @@
   gap: 8px;
   --opacity-bgc: 0.2;
   border-radius: 6px;
+  
 }
 
 .info__card-title {
   font-size: 18px;
   color: rgb(36, 48, 58);
   font-weight: 500;
+  transition: color 500ms ease;
 }
 .info__svg {
   font-size: 48px;
@@ -199,10 +205,17 @@
   font-size: 14px;
   font-weight: 800;
   text-transform: capitalize;
+  transition: color 500ms ease;
+
 }
+
 .info__card--obscure {
   --opacity-bgc: 1;
   color: #fff;
+}
+.info__card--dark{
+  color: #fff;
+
 }
 .info__card-title--white {
   color: white;
@@ -216,7 +229,6 @@
   width: 100%;
   gap: 20px;
   align-items: center;
-
 }
 .statistics__subtitle {
   display: flex;
@@ -224,7 +236,6 @@
   width: 100%;
   max-width: 362px;
   align-items: center;
-
 }
 .statistics__text {
   display: flex;
@@ -235,7 +246,7 @@
 
 .statistics__icon {
   font-size: 18px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
 }
 .statistics__container {
   margin-top: 20px;
@@ -362,20 +373,19 @@
     height: 121px;
   }
   .statistics__skill {
-    
     flex-wrap: wrap;
   }
-  .statistics__subtitle{
+  .statistics__subtitle {
     justify-content: flex-start;
     gap: 5px;
   }
-  .backgroud__img{
+  .backgroud__img {
     top: 1.5%;
     left: 0;
   }
 }
 
-.footer{
+.footer {
   border-top: 2px solid white;
   height: 50px;
   display: flex;
@@ -384,14 +394,14 @@
   text-align: center;
 }
 
-.info__error{
+.info__error {
   display: grid;
   gap: 25px;
   color: black;
   margin: 0 10px;
 }
 
-.error__btn{
+.error__btn {
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -400,10 +410,10 @@
   font-size: 16px;
   transition: transform 300ms ease;
 }
-.error__btn:hover{
+.error__btn:hover {
   transform: translateY(-4%);
 }
-.info__container{
+.info__container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;

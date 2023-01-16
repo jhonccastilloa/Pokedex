@@ -3,13 +3,18 @@ import { Outlet, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import Theme from "./shared/Theme";
+import { ThemeProvider } from "../context/ThemeContext";
 const ProtectedRoutes = () => {
   const { trainer } = useSelector((state: RootState) => state);
   if (trainer) {
-    return (<div>
-      <Theme/>
-      <Outlet />
-    </div>);
+    return (
+      <>
+        <ThemeProvider>
+          <Theme />
+          <Outlet />
+        </ThemeProvider>
+      </>
+    );
   } else {
     return <Navigate to="/" />;
   }

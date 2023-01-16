@@ -1,11 +1,19 @@
 import axios from "axios";
-import { useState, useEffect, FormEvent, ChangeEvent, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  FormEvent,
+  ChangeEvent,
+  useRef,
+  useContext,
+} from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PokeCard from "../components/pokedex/PokeCard";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../components/pokedex/Pagination";
 import "./style/pokedex.css";
+import ThemeContext from "../context/ThemeContext";
 
 interface PokemonUrl {
   name: string;
@@ -25,6 +33,7 @@ const Pokedex = () => {
   const sectionCards = useRef<HTMLElement>(null);
   const sectionStart = useRef<HTMLElement>(null);
 
+  const { isDark } = useContext(ThemeContext);
   useEffect(() => {
     getTypes();
   }, []);
@@ -68,7 +77,7 @@ const Pokedex = () => {
 
     navigate("/pokedex/" + input);
   };
-  
+
   const handleChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     scrollTo({
       top: sectionCards.current?.offsetTop,
@@ -77,7 +86,6 @@ const Pokedex = () => {
     setSelectType(e.target.value);
     setPage(1);
   };
-
 
   const [page, setPage] = useState(1);
   const [pokeForPage, setPokeForPage] = useState(16);
@@ -91,9 +99,13 @@ const Pokedex = () => {
     setPokeForPage(Number(e.target.value));
   };
   return (
-    <div>
+    <div className={`${isDark ? "pokedex--dark" : "pokedex"}`}>
       <section className="section__navbar container" ref={sectionStart}>
-        <img className="navbar__img" src="/headerPokemon2.png" alt="pokemon navbar" />
+        <img
+          className="navbar__img"
+          src="/headerPokemon2.png"
+          alt="pokemon navbar"
+        />
       </section>
       <section className="section__header container" ref={sectionCards}>
         <h1 className="header__title">Pokedex</h1>
@@ -104,7 +116,7 @@ const Pokedex = () => {
         <div className="header__search">
           <form className="header__form" onSubmit={handleSubmit}>
             <input
-              className="header__input"
+              className={`header__input ${isDark && 'header__input--dark'}`}
               id="search"
               type="text"
               placeholder="Buscar Pokemon"
@@ -112,7 +124,7 @@ const Pokedex = () => {
             <button className="header__btn">Buscar</button>
           </form>
           <div className="header__types">
-            <select className="header__select"  onChange={handleChangeSelect}>
+            <select className={`header__select ${isDark && 'header__select--dark'}`} onChange={handleChangeSelect}>
               <option className="header__option" value="All">
                 All Pokemon
               </option>
@@ -131,7 +143,7 @@ const Pokedex = () => {
 
           <div className="header__quantity">
             <select
-              className="header__select"
+              className={`header__select ${isDark && 'header__select--dark'}`}
               onChange={handleChangeSelectQuantity}
             >
               <option className="header__option-quantity" value="16">
@@ -142,7 +154,6 @@ const Pokedex = () => {
               <option value="96">96</option>
             </select>
             <button className="header__btn">Cantidad</button>
-
           </div>
         </div>
       </section>
@@ -150,7 +161,11 @@ const Pokedex = () => {
         {pokemons
           ?.slice((page - 1) * pokeForPage, page * pokeForPage)
           .map((pokemon) => (
-            <PokeCard key={pokemon.name} url={pokemon.url} sectionStart={sectionStart}/>
+            <PokeCard
+              key={pokemon.name}
+              url={pokemon.url}
+              sectionStart={sectionStart}
+            />
           ))}
       </section>
       <section className="section__pagination">
@@ -162,7 +177,9 @@ const Pokedex = () => {
         />
       </section>
       <footer className="footer container">
-        <p>Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe</p>
+        <p>
+          Proyecto relizado por Jhon Carlos Castillo Atencio con ❤ en 2022 pe
+        </p>
       </footer>
     </div>
   );
